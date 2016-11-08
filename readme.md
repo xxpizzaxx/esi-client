@@ -73,3 +73,36 @@ res4: scalaz.\/[esi.character.getCharactersCharacterIdErrors, String] = \/-("Luc
 ```
 
 so we can run that same res2 object as many times as we want, and it'll make the HTTP request each time, this time we got a successful disjunction with just the name in.
+
+### Turning it into a real application
+
+Let's write a little program to look up a character's security status, with some error handling
+
+```scala
+andi@ns3001737 eveapi-demo > cat src/main/scala/Main.scala
+import eveapi.esi.client.EsiClient, argonaut._, Argonaut._, ArgonautShapeless._, argonautCodecs.ArgonautCodecs._
+import scalaz._, Scalaz._
+
+object Main extends App {
+  val client = new EsiClient()
+  val result = client.character.getCharactersCharacterId(90758388).run
+  val output = result match {
+    case -\/(error) => s"unable to run, error: $error"
+    case \/-(character) => s"${character.name}'s security status is ${character.security_status.getOrElse(0.0)}"
+  }
+  println(output)
+  client.client.shutdown.run
+}
+```
+
+and let's run it with sbt
+
+```bash
+andi@ns3001737 eveapi-demo > sbt run
+[info] Loading global plugins from /home/andi/.sbt/0.13/plugins
+[info] Set current project to eveapi-demo (in build file:/home/andi/workspace/eveapi-demo/)
+[info] Compiling 1 Scala source to /home/andi/workspace/eveapi-demo/target/scala-2.11/classes...
+[info] Running Main
+Lucia Denniard's security status is -1.4869757
+[success] Total time: 13 s, completed 08-Nov-2016 23:13:04
+```
