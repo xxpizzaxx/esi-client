@@ -34,7 +34,7 @@ resolvers += Resolver.sonatypeRepo("releases")
 addSbtPlugin("com.github.alexarchambault" %% "sbt-ammonite" % "0.1.2")
 ```
 
-And let's launch the repl!
+And let's launch the repl and import the project!
 
 ```scala
 andi@kyubey eveapi-demo > sbt ammonite:run
@@ -44,8 +44,11 @@ andi@kyubey eveapi-demo > sbt ammonite:run
 Loading...
 Welcome to the Ammonite Repl 0.6.0
 (Scala 2.11.8 Java 1.8.0_111)
-@
+@ import eveapi.esi.client.EsiClient, argonaut._, Argonaut._, ArgonautShapeless._, argonautCodecs.ArgonautCodecs._
+import eveapi.esi.client.EsiClient, argonaut._, Argonaut._, ArgonautShapeless._, argonautCodecs.ArgonautCodecs._
 ```
+
+We need the EsiClient class, and argonaut so it can parse JSON, ArgonautShapeless lets it infer codecs, and we bring in a few of the library's codecs for DateTimes.
 
 Let's start out with something simple, looking up a character
 
