@@ -4,6 +4,6 @@ scala:
 script:
     - bash build.sh
     - cd client
-    - sbt compile
+    - sbt compile test
 jdk:
     - oraclejdk8
