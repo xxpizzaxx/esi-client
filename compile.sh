@@ -11,3 +11,5 @@ function generate {
 generate latest
 generate legacy
 generate dev
+
+ls
