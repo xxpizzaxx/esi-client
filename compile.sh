@@ -16,7 +16,7 @@ generate legacy
 generate dev
 
 function compile {
-  cat esi-version/number | sed 's/^/version := /g' > client-$1/version.sbt
+  cat esi-version/number | sed 's/^/version in ThisBuild := "/g' | sed 's/$/"/g' > client-$1/version.sbt
   cd client-$1
   sbt compile
 }
