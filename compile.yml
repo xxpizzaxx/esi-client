@@ -1,0 +1,14 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source: {repository: hseeberger/scala-sbt}
+
+inputs:
+- name: esi-archive
+- name: esi-client
+- name: swagger-codegen-blazescala
+
+run:
+  path: esi-client/compile.sh
