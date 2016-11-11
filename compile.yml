@@ -3,7 +3,7 @@ platform: linux
 
 image_resource:
   type: docker-image
-  source: {repository: hseeberger/scala-sbt}
+  source: {repository: nightscape/docker-sbt}
 
 inputs:
 - name: esi-archive
