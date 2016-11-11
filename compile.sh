@@ -16,7 +16,7 @@ generate legacy
 generate dev
 
 function compile {
-  cp esi-version/number client-$1/version.sbt
+  cat esi-version/number | sed 's/^/version := /g' > client-$1/version.sbt
   cd client-$1
   sbt compile
 }
