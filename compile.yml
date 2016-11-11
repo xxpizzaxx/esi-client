@@ -12,4 +12,4 @@ inputs:
 - name: swagger-codegen-blazescala
 
 run:
-  path: esi-client/compile.sh
+  path: ./esi-client/compile.sh
