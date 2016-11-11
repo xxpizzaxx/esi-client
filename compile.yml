@@ -22,4 +22,4 @@ run:
   args: ["./esi-client/compile.sh"]
 
 params:
-  BINTRAY_CREDENTIALS: {{bintray-credentials}}
+  BINTRAY_CREDENTIALS: ""
