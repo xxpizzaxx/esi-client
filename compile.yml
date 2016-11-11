@@ -10,6 +10,7 @@ inputs:
 - name: esi-archive
 - name: esi-client
 - name: swagger-codegen-blazescala
+- name: esi-version
 
 outputs:
 - name: client-latest
