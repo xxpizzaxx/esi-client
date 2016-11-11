@@ -9,6 +9,7 @@ function generate {
   mkdir client-$1/project/
   cp ./swagger-codegen-blazescala/*.sbt   client-$1/project/
   cp ./swagger-codegen-blazescala/*.scala client-$1/src/main/scala/
+  echo "bintrayVcsUrl := Some("git@github.com:xxpizzaxx/esi-client.git")" >> client-$1/build.sbt
 }
 
 generate latest
