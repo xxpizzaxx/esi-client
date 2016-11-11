@@ -12,5 +12,5 @@ inputs:
 - name: swagger-codegen-blazescala
 
 run:
-  path: echo #./esi-client/compile.sh
-  args: ["Hello, World!"]
+  path: /bin/bash
+  args: ["./esi-client/compile.sh"]
