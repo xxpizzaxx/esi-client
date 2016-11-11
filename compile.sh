@@ -30,5 +30,7 @@ compile dev
 # load bintray credentials
 mkdir -p ~/.bintray
 echo $BINTRAY_CREDENTIALS > ~/.bintray/.credentials
+wc -l ~/.bintray/.credentials
 cd client-latest
 sbt publish
+
