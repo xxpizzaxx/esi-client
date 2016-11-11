@@ -3,7 +3,8 @@ platform: linux
 
 image_resource:
   type: docker-image
-  source: {repository: golang, tag: 1.6-alpine}
+  source:
+    repository: java
 
 inputs:
 - name: esi-archive
