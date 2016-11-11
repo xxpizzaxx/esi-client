@@ -11,6 +11,11 @@ inputs:
 - name: esi-client
 - name: swagger-codegen-blazescala
 
+outputs:
+- name: client-latest
+- name: client-legacy
+- name: client-dev
+
 run:
   path: /bin/bash
   args: ["./esi-client/compile.sh"]
