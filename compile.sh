@@ -10,7 +10,7 @@ function generate {
   cp ./swagger-codegen-blazescala/*.sbt   client-$1/project/
   cp ./swagger-codegen-blazescala/*.scala client-$1/src/main/scala/
   echo "bintrayVcsUrl := Some(\"git@github.com:xxpizzaxx/esi-client.git\")" >> client-$1/build.sbt
-  ./scalafmt -i -f client-$1 --config scalafmt.conf
+  ./esi-client/scalafmt -i -f client-$1 --config scalafmt.conf
 }
 
 generate latest
