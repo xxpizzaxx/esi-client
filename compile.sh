@@ -12,9 +12,10 @@ function generate {
   ./esi-client/scalafmt -i -f client-$1 --config ./esi-client/scalafmt.conf
 }
 
-generate latest
-generate legacy
-generate dev
+generate _latest
+#generate latest
+#generate legacy
+#generate dev
 
 function compile {
   pushd .
@@ -24,14 +25,15 @@ function compile {
   popd
 }
 
-compile latest
-compile legacy
-compile dev
+compile _latest
+#compile latest
+#compile legacy
+#compile dev
 
 # load bintray credentials
 mkdir -p ~/.bintray
 echo $BINTRAY_CREDENTIALS | sed 's/>/\n/g' > ~/.bintray/.credentials
 wc -l ~/.bintray/.credentials
-cd client-latest
+cd client-_latest
 sbt publish
 
