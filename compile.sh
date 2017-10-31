@@ -36,6 +36,8 @@ cp client-_latest/build.sbt client-_latest/normalbuild.sbt
 mv client-_latest/project/plugins.sbt client-_latest/plugins.off
 echo "credentials += Credentials(Path.userHome / \".ivy2\" / \".credentials\")" >> client-_latest/build.sbt
 echo "publishTo := Some(\"pizza\" at \"http://dev.pizza.moe/repository/pizza/\")" >> client-_latest/build.sbt
+echo "publishMavenStyle := true" >> client-_latest/build.sbt
+echo "trying to publish to archiva"
 cd client-_latest
 sbt publish
 rm build.sbt
@@ -51,5 +53,6 @@ wc -l ~/.bintray/.credentials
 cd client-_latest
 echo "bintrayVcsUrl := Some(\"git@github.com:xxpizzaxx/esi-client.git\")" >> build.sbt
 echo "licenses += (\"MIT\", url(\"http://opensource.org/licenses/MIT\"))" >> build.sbt
+echo "trying to publish to jcenter"
 sbt publish
 
