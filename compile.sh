@@ -30,7 +30,20 @@ compile _latest
 #compile legacy
 #compile dev
 
-# load bintray credentials
+# publish internally
+mkdir -p ~/.ivy2
+echo $PIZZA_CREDENTIALS | sed 's/>/\n/g' > ~/.ivy2/.credentials
+cp client-_latest/build.sbt client-_latest/normalbuild.sbt
+echo "credentials += Credentials(Path.userHome / \".ivy2\" / \".credentials\")" >> client-_latest/build.sbt
+echo "publishTo := Some(\"pizza\" at \"http://dev.pizza.moe/repository/pizza/\")" >> client-_latest/build.sbt
+cd client-_latest
+sbt publish
+rm build.sbt
+cp normalbuild.sbt build.sbt
+cd ..
+
+
+# publish externally
 mkdir -p ~/.bintray
 echo $BINTRAY_CREDENTIALS | sed 's/>/\n/g' > ~/.bintray/.credentials
 wc -l ~/.bintray/.credentials
