@@ -8,7 +8,6 @@ function generate {
   java -jar swagger-codegen-cli-2.2.1.jar generate -i ./esi-archive/$1/swagger.json -l async-scala -o client-$1 -t ./swagger-codegen-blazescala --api-package eveapi.esi.api --invoker-package eveapi.esi.client --model-package eveapi.esi.model --additional-properties clientName=EsiClient  --artifact-id esi-client --group-id eveapi
   mkdir client-$1/project/
   cp ./swagger-codegen-blazescala/*.sbt   client-$1/project/
-  echo "bintrayVcsUrl := Some(\"git@github.com:xxpizzaxx/esi-client.git\")" >> client-$1/build.sbt
   ./esi-client/scalafmt -i -f client-$1 --config ./esi-client/scalafmt.conf
 }
 
@@ -34,12 +33,14 @@ compile _latest
 mkdir -p ~/.ivy2
 echo $PIZZA_CREDENTIALS | sed 's/>/\n/g' > ~/.ivy2/.credentials
 cp client-_latest/build.sbt client-_latest/normalbuild.sbt
+mv client-_latest/project/plugins.sbt client-_latest/plugins.off
 echo "credentials += Credentials(Path.userHome / \".ivy2\" / \".credentials\")" >> client-_latest/build.sbt
 echo "publishTo := Some(\"pizza\" at \"http://dev.pizza.moe/repository/pizza/\")" >> client-_latest/build.sbt
 cd client-_latest
 sbt publish
 rm build.sbt
 cp normalbuild.sbt build.sbt
+mv plugins.off project/plugins.sbt
 cd ..
 
 
@@ -48,5 +49,7 @@ mkdir -p ~/.bintray
 echo $BINTRAY_CREDENTIALS | sed 's/>/\n/g' > ~/.bintray/.credentials
 wc -l ~/.bintray/.credentials
 cd client-_latest
+echo "bintrayVcsUrl := Some(\"git@github.com:xxpizzaxx/esi-client.git\")" >> build.sbt
+echo "licenses += (\"MIT\", url(\"http://opensource.org/licenses/MIT\"))" >> build.sbt
 sbt publish
 
