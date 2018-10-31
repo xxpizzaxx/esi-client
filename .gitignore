@@ -1,0 +1,6 @@
+blazescala/
+swagger-codegen-blazescala/
+client/
+client*/
+swagger-codegen-cli-*
+swagger.json
